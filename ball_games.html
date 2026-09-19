@@ -60,12 +60,18 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        background: linear-gradient(180deg, #f7fbff 0%, #ffffff 35%, #ffffff 100%);
       }
       #app {
         flex: 1;
+        max-width: 1080px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: 0 10px 30px rgba(0, 129, 107, 0.15);
       }
       .footer {
-        background: #333333;
+        background: linear-gradient(90deg, #126b5c 0%, #008d77 100%);
         height:200px;
         text-align: center;
       }
@@ -90,12 +96,31 @@
       .now_game_box{
         overflow-y: scroll;
       }
+      .hero-header{
+        text-align:center;
+        border-bottom:solid 1px #dbefeb;
+        padding:20px;
+        box-shadow:0 8px 18px rgba(17, 110, 94, 0.16);
+        width:100%;
+        background:linear-gradient(180deg, #f2fffc 0%, #ffffff 70%);
+      }
+      .card{
+        border-radius:18px !important;
+        box-shadow:0 8px 20px rgba(12, 110, 93, 0.09);
+      }
+      button{
+        transition: filter 0.2s ease, transform 0.2s ease;
+      }
+      button:hover{
+        filter: brightness(94%);
+        transform: translateY(-1px);
+      }
     </style>
   </head>
   <body>
     <div id="app">
 
-      <div style="text-align:center;border-bottom:solid 1px gray;padding:20px;box-shadow: 0px 5px 4px gray;width:100%">
+      <div class="hero-header">
         <img src="https://lh3.googleusercontent.com/d/1qCEizWvP5J8DmPWwqkLE3onfI7j36giv" width="700px" style="text-align:center">
       </div>
       <div class="mx-auto m-4 ">

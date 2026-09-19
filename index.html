@@ -74,24 +74,89 @@
         transform: translateY(0); }
 }
 
+body{
+    background: linear-gradient(180deg, #fff8f8 0%, #fff 35%, #fff 100%);
+    color:#6b1d1d;
+}
+
+#app{
+    min-height:100vh;
+    max-width:1080px;
+    margin:0 auto;
+    background-color:#ffffff;
+    box-shadow:0 10px 30px rgba(170, 25, 25, 0.12);
+}
+
+.top-menu{
+    background:linear-gradient(90deg, #ad1f1f 0%, #d13c3c 100%);
+    height:56px;
+    width:100%;
+    padding:16px;
+    align-items:center;
+    gap:16px;
+}
+
+.top-menu p,.top-menu a{
+    margin:0;
+    transition:opacity 0.2s ease;
+}
+
+.top-menu p:hover,.top-menu a:hover{
+    opacity:0.8;
+}
+
+.hero-header{
+    background-size:cover;
+    background-image:url('imgs/pre.png');
+    text-align:center;
+    border-bottom:solid 1px #f4d9d9;
+    padding:26px 20px;
+    box-shadow:0 10px 20px rgba(170, 25, 25, 0.1);
+    width:100%;
+    background-color:white;
+}
+
+.site-content{
+    padding-bottom:24px;
+}
+
+.card{
+    border-radius:16px !important;
+    box-shadow:0 6px 18px rgba(137, 26, 26, 0.08);
+}
+
+button{
+    transition:filter 0.2s ease, transform 0.2s ease;
+}
+
+button:hover{
+    filter:brightness(96%);
+    transform:translateY(-1px);
+}
+
+.site-footer{
+    height:80px;
+    background:linear-gradient(90deg, #5e1f1f 0%, #822b2b 100%);
+}
+
 </style>
-<body style="background-color: white;">
+<body>
     <div id="app">
     
     <template v-if="load==false">
 
-    <div style="background-color:rgb(196, 49, 49);height:50px;width:100%;padding:13px" class="d-flex">
+    <div class="d-flex top-menu">
         <p style="color:white;font-size:13px;font-weight:bold" @click="page='home'">ホーム</p>
         <p style="color:white;font-size:13px;font-weight:bold" class="ms-3" @click="page='view_all'">得点一覧</p>
         <a href="https://sites.google.com/kenchiba.net/sportsfest" style="text-decoration:none;color:white;font-size:13px;font-weight:bold" class="ms-3">公式サイト</a>
     </div>
-    <div style="background-size:  cover;background-image: url('imgs/pre.png');text-align:center;border-bottom:solid 1px gray;padding:20px;box-shadow: 0px 5px 4px gray;width:100%;background-color: white;">
+    <div class="hero-header">
         <div style="text-align: center;" >
             <img src="imgs/header_logo.png" width="60%" style="text-align: center;">
         </div>
     </div>
 
-    <div class="m-4 mt-4">
+    <div class="m-4 mt-4 site-content">
         <div v-if="page=='home'">
             <img src="imgs/score.png" width="150px">
             <div style="height:2px;background-color:rgb(196, 49, 49);width:100%" class="mt-2"></div>
@@ -436,7 +501,7 @@
 
 
     </div>
-    <footer class="bg-dark text-white py-3 mt-auto" style="height:80px">
+    <footer class="site-footer text-white py-3 mt-auto">
         <div class="container d-flex justify-content-between mt-4">
             <span style="font-size:13px">県千葉体育大会執行部</span>
             <span></span>
