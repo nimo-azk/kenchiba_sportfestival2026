@@ -104,6 +104,45 @@
         width:100%;
         background:linear-gradient(180deg, #f2fffc 0%, #ffffff 70%);
       }
+      .persona-heading{
+        background:#111;
+        color:#fff;
+        font-size:20px;
+        font-weight:900;
+        letter-spacing:0.04em;
+        display:block;
+        position:relative;
+        margin:42px 0 24px;
+        padding:0.9em 0.9em 0.9em 1.2em;
+        border-left:10px solid #e60012;
+        border-right:24px solid #e60012;
+        box-shadow:9px 9px 0 #e60012;
+        text-align:left;
+      }
+      .persona-heading::before{
+        content:"";
+        position:absolute;
+        left:-20px;
+        top:0;
+        width:10px;
+        height:100%;
+        background:#111;
+      }
+      .persona-heading::after{
+        content:"";
+        position:absolute;
+        right:-24px;
+        top:50%;
+        transform:translateY(-50%);
+        width:0;
+        height:0;
+        border-top:10px solid transparent;
+        border-bottom:10px solid transparent;
+        border-left:12px solid #111;
+      }
+      .persona-heading--spaced{
+        margin-top:70px;
+      }
       .card{
         border-radius:18px !important;
         box-shadow:0 8px 20px rgba(12, 110, 93, 0.09);
@@ -126,7 +165,7 @@
       <div class="mx-auto m-4 ">
         <div class="mx-auto m-1" v-if="page=='main'">
 
-          <p class="text-center" style="font-size:50px;font-weight:bold;color:#696969">得点実況</p>
+          <h1 class="persona-heading">得点実況</h1>
           <hr>
 
           <template v-for="i in [['サッカー','ソフト'],['男バレー','男ドッジ']]">
@@ -148,7 +187,7 @@
           </div>
           </template>
 
-          <p class="text-center" style="font-size:50px;font-weight:bold;color:#696969;margin-top:70px">スケジュール</p>
+          <h1 class="persona-heading persona-heading--spaced">スケジュール</h1>
           <hr>
           <div class="ms-5 me-5" style="margin-top:50px">
             <div class="card" style="border-radius:20px;padding:20px;margin-top:40px;border:1px solid #00b395;">
@@ -183,7 +222,7 @@
         </div>
         <div v-if="page!='main'">
 
-          <p class="text-center" style="font-size:50px;font-weight:bold;color:#696969">得点実況</p>
+          <h1 class="persona-heading">得点実況</h1>
           <hr>
 
           <div class="ms-5 me-5 mt-4">
