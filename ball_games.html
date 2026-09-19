@@ -6,6 +6,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script> 
     <style>
+      :root{
+        --persona-red:#e60012;
+        --persona-red-dark:#b40010;
+        --persona-red-soft:#ffe8eb;
+        --persona-black:#111111;
+        --persona-gray:#2c2c2c;
+      }
       .game_btn{
         height:120px;
         border-radius:20px;
@@ -13,25 +20,28 @@
         transition: background-color 0.4s ease
       }
       .game_btn:hover{
-        background-color:#cccccc
+        background-color:var(--persona-red-soft)
       }
       .game_btn_font{
         font-weight:bold;
         font-size:25px;
-        margin-left:15px
+        margin-left:15px;
+        color:var(--persona-black)
       }
       .league_header_font{
         font-size:25px;
-        text-align:center
+        text-align:center;
+        color:var(--persona-black)
       }
       .cell_paint{
-        background-color:#696969 !important;
-        color:red
+        background-color:var(--persona-black) !important;
+        color:var(--persona-red)
       }
       .score_font{
         font-weight:bold;
         text-align:center;
-        font-size:20px
+        font-size:20px;
+        color:var(--persona-gray)
       }
       .gender_btn{
         font-size:20px;
@@ -50,7 +60,7 @@
         width:100%;
         border:none;
         height:80px;
-        background-color:#00b395;
+        background:linear-gradient(90deg, var(--persona-red-dark) 0%, var(--persona-red) 100%);
         border-radius:10px;
         margin-bottom:20px;
         margin-top:20px
@@ -60,12 +70,18 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        background: linear-gradient(180deg, #fff2f4 0%, #ffffff 40%, #ffffff 100%);
       }
       #app {
         flex: 1;
+        max-width: 1080px;
+        width: 100%;
+        margin: 0 auto;
+        background-color: #fff;
+        box-shadow: 0 10px 30px rgba(180, 0, 16, 0.16);
       }
       .footer {
-        background: #333333;
+        background: linear-gradient(90deg, #111111 0%, #2a2a2a 100%);
         height:200px;
         text-align: center;
       }
@@ -73,35 +89,93 @@
         height:60px;
         border-radius:40px;
         border:none;
-        background-color:#00b395;
+        background:linear-gradient(90deg, var(--persona-red-dark) 0%, var(--persona-red) 100%);
         width:150px;
         color:white;
         font-size:20px
       }
       .win{
-        color:#bf9000
+        color:var(--persona-red)
       }
       .lose{
-        color:#1155cc
+        color:#3a3a3a
       }
       .draw{
-        color:#38761d
+        color:#6b6b6b
       }
       .now_game_box{
         overflow-y: scroll;
+      }
+      .hero-header{
+        text-align:center;
+        border-bottom:solid 1px #f6c7cd;
+        padding:20px;
+        box-shadow:0 8px 18px rgba(180, 0, 16, 0.18);
+        width:100%;
+        background:linear-gradient(180deg, #fff1f3 0%, #ffffff 70%);
+      }
+      .persona-heading{
+        background:#111;
+        color:#fff;
+        font-size:20px;
+        font-weight:900;
+        letter-spacing:0.04em;
+        display:block;
+        position:relative;
+        margin:42px 0 24px;
+        padding:0.9em 0.9em 0.9em 1.2em;
+        border-left:10px solid #e60012;
+        border-right:24px solid #e60012;
+        box-shadow:9px 9px 0 #e60012;
+        text-align:left;
+      }
+      .persona-heading::before{
+        content:"";
+        position:absolute;
+        left:-20px;
+        top:0;
+        width:10px;
+        height:100%;
+        background:#111;
+      }
+      .persona-heading::after{
+        content:"";
+        position:absolute;
+        right:-24px;
+        top:50%;
+        transform:translateY(-50%);
+        width:0;
+        height:0;
+        border-top:10px solid transparent;
+        border-bottom:10px solid transparent;
+        border-left:12px solid #111;
+      }
+      .persona-heading--spaced{
+        margin-top:70px;
+      }
+      .card{
+        border-radius:18px !important;
+        box-shadow:0 8px 20px rgba(120, 18, 28, 0.1);
+      }
+      button{
+        transition: filter 0.2s ease, transform 0.2s ease;
+      }
+      button:hover{
+        filter: brightness(94%);
+        transform: translateY(-1px);
       }
     </style>
   </head>
   <body>
     <div id="app">
 
-      <div style="text-align:center;border-bottom:solid 1px gray;padding:20px;box-shadow: 0px 5px 4px gray;width:100%">
+      <div class="hero-header">
         <img src="https://lh3.googleusercontent.com/d/1qCEizWvP5J8DmPWwqkLE3onfI7j36giv" width="700px" style="text-align:center">
       </div>
       <div class="mx-auto m-4 ">
         <div class="mx-auto m-1" v-if="page=='main'">
 
-          <p class="text-center" style="font-size:50px;font-weight:bold;color:#696969">得点実況</p>
+          <h1 class="persona-heading">得点実況</h1>
           <hr>
 
           <template v-for="i in [['サッカー','ソフト'],['男バレー','男ドッジ']]">
@@ -112,7 +186,7 @@
               <div>
                 <p>
                 <img v-bind:src="game_info[j]['image']" width="65px" style="align:middle">
-                <span style="color:#696969;" class="game_btn_font">
+                <span class="game_btn_font">
                   {{game_name[j]}}
                 </span>
                 </p>
@@ -123,15 +197,15 @@
           </div>
           </template>
 
-          <p class="text-center" style="font-size:50px;font-weight:bold;color:#696969;margin-top:70px">スケジュール</p>
+          <h1 class="persona-heading persona-heading--spaced">スケジュール</h1>
           <hr>
           <div class="ms-5 me-5" style="margin-top:50px">
-            <div class="card" style="border-radius:20px;padding:20px;margin-top:40px;border:1px solid #00b395;">
+            <div class="card" style="border-radius:20px;padding:20px;margin-top:40px;border:1px solid #e60012;">
               <p style="font-size:35px;font-weight:bold">開催中の競技</p>
               <hr style="margin-top:-10px">
               <div class="row">
                 <div class="col-6">
-                  <div class="card " style="border-radius:20px;padding:20px;margin-top:10px;height:350px;border:1px solid #696969">
+                  <div class="card " style="border-radius:20px;padding:20px;margin-top:10px;height:350px;border:1px solid #2c2c2c">
                     <div class="now_game_box">
                     <template v-for="i in now_game">
                       <p style="font-size:25px;font-weight:bold">{{i}}</p>
@@ -141,14 +215,14 @@
                   </div>
                 </div>
                 <div class="col-6" style="text-align:center;margin-top:10px;">
-                  <p style="font-weight:bold;font-size:45px;color:#00b395;border:2px solid #00b395;border-radius:60px;padding:5px;width:280px;">
+                  <p style="font-weight:bold;font-size:45px;color:#e60012;border:2px solid #e60012;border-radius:60px;padding:5px;width:280px;">
                     {{now_time.getHours()+"時"+now_time.getMinutes()+"分"}}
                   </p>
                   <p style="text-align:left;font-weight:bold;font-size:20px">15分以内に予定の競技</p>
                   <hr>
                   <div style="height:190px" class="now_game_box">
                     <template v-for="i in coming_game">
-                      <p style="font-size:20px;font-weight:bold;text-align:left;color:#00b395">{{i}}</p>
+                      <p style="font-size:20px;font-weight:bold;text-align:left;color:#e60012">{{i}}</p>
                     </template>
                   </div>
                 </div>
@@ -158,7 +232,7 @@
         </div>
         <div v-if="page!='main'">
 
-          <p class="text-center" style="font-size:50px;font-weight:bold;color:#696969">得点実況</p>
+          <h1 class="persona-heading">得点実況</h1>
           <hr>
 
           <div class="ms-5 me-5 mt-4">
@@ -167,28 +241,28 @@
             <img v-bind:src="game_info[page]['image']" width="100px" style="align:middle;margin-top:-20px">
             <template v-if="page!='サッカー' && page!='ソフト'">
               <template v-if="page[0]=='男'">
-                <span class="game_btn_font" style="color:#5f9ea0;font-size:60px">{{page[0]}}</span>
+                <span class="game_btn_font" style="color:#b40010;font-size:60px">{{page[0]}}</span>
               </template>
               <template v-else>
-                <span class="game_btn_font" style="color:#f08080;font-size:60px">{{page[0]}}</span>
+                <span class="game_btn_font" style="color:#e60012;font-size:60px">{{page[0]}}</span>
               </template>
-              <span class="game_btn_font" style="color:#696969;font-size:60px">{{page.slice(1)}}</span>
+              <span class="game_btn_font" style="color:#2c2c2c;font-size:60px">{{page.slice(1)}}</span>
             </template>
             <template v-else>
-              <span class="game_btn_font" style="color:#696969;font-size:60px">{{page}}</span>
+              <span class="game_btn_font" style="color:#2c2c2c;font-size:60px">{{page}}</span>
             </template>
           </p>
           <button class="ms-auto align-self-center mini_back_btn" @click="page='main'">ホームへ戻る</button>
           </div>
           <template v-if="page!='サッカー' && page!='ソフト'">
-          <button class="gender_btn" style="border-radius:15px 0px 0px 0px;margin-right:-5px;background-color:#5f9ea0" @click="page='男'+page.slice(1)">男子</button>
-          <button class="gender_btn" style="border-radius:0px 15px 0px 0px;background-color:#f08080" 
+          <button class="gender_btn" style="border-radius:15px 0px 0px 0px;margin-right:-5px;background-color:#111111" @click="page='男'+page.slice(1)">男子</button>
+          <button class="gender_btn" style="border-radius:0px 15px 0px 0px;background-color:#e60012" 
           @click="page='女'+page.slice(1)">女子</button>
           </template>
-          <div style="width:100%;height:1px;background-color:#696969;margin-top:-0px"></div>
+          <div style="width:100%;height:1px;background-color:#2c2c2c;margin-top:-0px"></div>
 
           <template v-for="(i) in league">
-            <table class="table table-bordered mt-4" style="border:2px solid #696969;border-radius:20px">
+            <table class="table table-bordered mt-4" style="border:2px solid #2c2c2c;border-radius:20px">
               <thead>
                 <tr class="league_header_font" style="height:70px;padding:30px">
                   <th>
@@ -265,22 +339,22 @@
           game_info:{
             "サッカー":{
               "image":"https://lh3.googleusercontent.com/d/1Tw-v12QQsNkUI30SEcG1Tm54Ny7UIlpM",
-              "color":"#3a9bb6"},
+              "color":"#e60012"},
             "ソフト":{
               "image":"https://lh3.googleusercontent.com/d/1fW-nKLeCc4uFMp0m7K0GxRSbK0FzMvdZ",
-              "color":"#22a151"},
+              "color":"#8f000d"},
             "男バレー":{
               "image":"https://lh3.googleusercontent.com/d/1AyrJm7kEbBrSgBQG-b9IhMruQyKw19cH",
-              "color":"#8f69a5 "},
+              "color":"#2c2c2c"},
             "女バレー":{
               "image":"https://lh3.googleusercontent.com/d/1AyrJm7kEbBrSgBQG-b9IhMruQyKw19cH",
-              "color":"#8f69a5 "},
+              "color":"#6b0008"},
             "男ドッジ":{
               "image":"https://lh3.googleusercontent.com/d/1aiUM7_P3obVdxg8oTm1Ri6Oa3jL2fjBf",
-              "color":"#e99250"},
+              "color":"#111111"},
             "女ドッジ":{
               "image":"https://lh3.googleusercontent.com/d/1aiUM7_P3obVdxg8oTm1Ri6Oa3jL2fjBf",
-              "color":"#e99250"}
+              "color":"#d10011"}
           },
           game_name:{
             "サッカー":"サッカー",
